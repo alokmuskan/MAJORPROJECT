@@ -56,7 +56,6 @@ app.get("/listings/:id", async (req, res) => {
 
 //Create Route
 app.post("/listings", async (req, res) => {
-    //let {title, description, image, price, country, location} = req.body;
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
@@ -87,20 +86,6 @@ app.delete("/listings/:id", async(req, res) => {
     res.redirect("/listings");
 })
 
-//Test Route
-// app.get("/testListing", async(req, res) => {
-//     let sampleListing = new Listing({
-//         title: "My New Villa",
-//         description: "By the beach",
-//         price: 1200,
-//         location: "Calangute, Goa",
-//         country: "India",
-//     });
-
-//     await sampleListing.save();
-//     console.log("sample was saved");
-//     res.send("successful testing");
-// });
 
 app.listen(8080, () => {
     console.log("server is listening on port 8080");
