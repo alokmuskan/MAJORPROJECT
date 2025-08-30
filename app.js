@@ -89,9 +89,9 @@ app.delete("/listings/:id", wrapAsync(async(req, res) => {
     res.redirect("/listings");
 }));
 
-//if request doesnt matches with the previous routes this route gets executed
+
 //it matches the routes that do not exists
-app.all("/*", (req, res, next) => {
+app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
 
