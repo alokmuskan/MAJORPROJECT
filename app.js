@@ -90,7 +90,8 @@ app.delete("/listings/:id", wrapAsync(async(req, res) => {
 }));
 
 
-//it matches the routes that do not exists
+
+//it responds to the routes that do not exists and acts like a wild card
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
@@ -98,7 +99,7 @@ app.use((req, res, next) => {
 
 //creating Middleware
 app.use((err, req, res, next) => {
-    let {statusCode=500, message="Something went wrong!"} = err;
+    let { statusCode=500, message="Something went wrong!" } = err;
     res.status(statusCode).send(message);
 });
 
