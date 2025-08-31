@@ -57,12 +57,16 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 
 //Create Route
-app.post("/listings", wrapAsync(async (req, res, next) => {
-    const newListing = new Listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");
-    
-}));
+app.post("/listings", 
+    wrapAsync(async (req, res, next) => {
+        if(!req.body.listing) {
+            throw new ExpressError(400, "Send valid data for listing");
+        }
+        const newListing = new Listing(req.body.listing);
+        await newListing.save();
+        res.redirect("/listings");
+    })
+);
 
 
 //Edit Route
@@ -75,10 +79,14 @@ app.get("/listings/:id/edit", wrapAsync(async(req, res) => {
 
 //Update Route 
 app.put("/listings/:id", wrapAsync(async(req, res) => {
-    let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing});
-    res.redirect(`/listings/${id}`);
-}));
+    if(!req.body.listing) {
+            throw new ExpressError(400, "Send valid data for listing");
+        }
+        let { id } = req.params;
+        await Listing.findByIdAndUpdate(id, {...req.body.listing});
+        res.redirect(`/listings/${id}`);
+    })
+);
 
 
 //Delete Route
@@ -91,7 +99,7 @@ app.delete("/listings/:id", wrapAsync(async(req, res) => {
 
 
 
-//it responds to the routes that do not exists and acts like a wild card
+//it responds to the routes that do not exists and acts like a wild
 app.use((req, res, next) => {
     next(new ExpressError(404, "Page Not Found!"));
 });
@@ -103,7 +111,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).send(message);
 });
 
+
 app.listen(8080, () => {
     console.log("server is listening on port 8080");
 });
-
