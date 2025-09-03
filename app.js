@@ -72,6 +72,7 @@ app.post("/listings",
         if(!newListing.location) {
             throw new ExpressError(404, "Location is missing!");
         }
+
         await newListing.save();
         res.redirect("/listings");
     })
