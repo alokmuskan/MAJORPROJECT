@@ -60,8 +60,12 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 //Create Route
 app.post("/listings", 
     wrapAsync(async (req, res, next) => {
+        let result = listingSchema.validate(req.body);
+        console.log(result);
+        if(result.error) {
+            throw new ExpressError(400, result.error);
+        }
         const newListing = new Listing(req.body.listing);
-        
         await newListing.save();
         res.redirect("/listings");
     })
