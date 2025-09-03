@@ -71,7 +71,7 @@ app.get("/listings/:id", wrapAsync(async (req, res) => {
 
 //Create Route
 app.post("/listings", 
-    validateListing,
+    validateSchema,
     wrapAsync(async (req, res, next) => {
         const newListing = new Listing(req.body.listing);
         await newListing.save();
@@ -91,7 +91,7 @@ app.get("/listings/:id/edit", wrapAsync(async(req, res) => {
 //Update Route 
 app.put(
     "/listings/:id", 
-    validateListing,
+    validateSchema,
     wrapAsync(async(req, res) => {
         let { id } = req.params;
         await Listing.findByIdAndUpdate(id, {...req.body.listing});
