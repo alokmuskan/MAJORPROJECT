@@ -36,17 +36,18 @@
     </div>
 
     <div class="col-8 offset-3 ">
+        <hr>
         <h4>Leave a Review</h4>
         <form>
             <div>
-                <lable for="rating">Rating</lable>
+                <lable for="rating" class="form-label">Rating</lable>
                 <input type="range" min="1" max="5" id="rating" name="review[rating]">
             </div>
             <div>
-               <lable for="comment">Comments</lable> 
-               <textarea name="review[comment]" id="comment"></textarea>
+               <lable for="comment" class="form-label">Comments</lable> 
+               <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control"></textarea>
             </div>
-            <button>Submit</button>
+            <button class="btn btn-outline-dark">Submit</button>
         </form>
     </div>
 
