@@ -46,7 +46,7 @@ const validateSchema = (req, res, next) => {
     else {
         next();
     }
-}
+} 
 
 //Index route
 app.get("/listings", wrapAsync(async(req, res) => {
