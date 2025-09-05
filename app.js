@@ -122,7 +122,8 @@ app.delete("/listings/:id", wrapAsync(async(req, res) => {
 
 
 //Reviews
-//Post Route
+
+//Post Review Route
 app.post("/listings/:id/reviews", 
     validateReview , 
     wrapAsync(async(req, res,) => {
@@ -138,6 +139,21 @@ app.post("/listings/:id/reviews",
     // res.send("new review saved");
     res.redirect(`/listings/${listing._id}`);
 }));
+
+
+//Delete Review Route
+app.delete(
+    "/listings/:id/reviews/:reviewId", 
+    wrapAsync(async(req, res) => {
+        let { id, reviewId } = req.params;
+
+        await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+        await Review.findByIdAndDelete(reviewId);
+
+        res.redirect(`/listings/${id}`);
+    })
+);
+
 
 //it responds to the routes that do not exists and acts like a wild
 app.use((req, res, next) => {
