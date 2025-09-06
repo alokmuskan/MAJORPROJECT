@@ -37,10 +37,11 @@ router.get("/:id", wrapAsync(async (req, res) => {
     const listing = await Listing.findById(id).populate("reviews");
     if(!listing) {
         req.flash("error", "Listing you requested for does not exist!");
-        res.redirect("/listings");
+        return res.redirect("/listings");
     }
-    res.render("listings/show.ejs", {listing});
-}));
+    res.render("listings/show.ejs", { listing });
+})
+);
 
 
 //Create Route
