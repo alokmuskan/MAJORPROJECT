@@ -41,6 +41,6 @@ router.post(
         req.flash("success", "Welcome back to WanderLust!");
         res.redirect("/listings");
     }
-)
+);
 
 module.exports = router;
