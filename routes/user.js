@@ -13,6 +13,8 @@ router.post("/signup", async(req, res) => {
 
     const registeredUser = await User.register(newUser, password); 
     console.log(registeredUser);
+    req.flash("success", "Welcome to WanderLust");
+
 });
 
 module.exports = router;
