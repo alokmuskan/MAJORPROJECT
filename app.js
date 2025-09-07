@@ -74,6 +74,14 @@ app.use((req, res, next) => {
 });
 
 
+app.get("/demouser", async(req, res) => {
+    let fakeUser = new User({
+        email: "student@gmail.com",
+        username: "delta-student"
+    });
+})
+
+
 app.use("/listings", listings);
 app.use("/listings/:id/reviews", reviews);
 
