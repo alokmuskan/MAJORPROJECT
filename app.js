@@ -79,6 +79,8 @@ app.get("/demouser", async(req, res) => {
         email: "student@gmail.com",
         username: "delta-student"
     });
+
+    User.register(fakeUser, "helloworld");
 })
 
 
