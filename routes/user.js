@@ -8,8 +8,11 @@ router.get("/signup", (req, res) => {
 
 
 router.post("/signup", async(req, res) => {
-     let { username, email, password } = req.body; 
+    let { username, email, password } = req.body; 
     const newUser =  new User({email, username});
+
+    const registeredUser = await User.register(newUser, password); 
+    console.log(registeredUser);
 });
 
 module.exports = router;
