@@ -5,12 +5,12 @@ module.exports.isLoggedIn = (req, res, next) => {
         return res.redirect("/login");
     }
     next();
-}
+};
 
 
 module.exports.saveRedirectUrl = (req, res, next) => {
     if(req.session.redirectUrl) {
-        res.local.redirectUrl = req.session.redirectUrl;
+        res.locals.redirectUrl = req.session.redirectUrl;
     }
     next();
 };
