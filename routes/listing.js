@@ -4,7 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js"); 
 const { listingSchema } = require("../schema.js");
 const Listing = require("../models/listing.js");
-const { isLoggedIn } = require("../middleware.js");
+const { isLoggedIn, isOwner } = require("../middleware.js");
 
 
 const validateListing = (req, res, next) => {
@@ -66,6 +66,7 @@ router.post("/",
 //Edit Route
 router.get("/:id/edit",
     isLoggedIn,
+    isOwner,
     wrapAsync(async(req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -95,6 +96,7 @@ router.put(
 //Delete Route
 router.delete("/:id", 
     isLoggedIn,
+    isOwner,
     wrapAsync(async(req, res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
