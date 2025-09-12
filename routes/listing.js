@@ -74,7 +74,7 @@ router.get("/:id/edit",
         req.flash("error", "Listing you requested for does not exist!");
         return res.redirect("/listings");
     }
-    res.render("listings/edit.ejs", { listing });
+    res.render("listings/edit.ejs", { listing }); 
 }));
 
 
