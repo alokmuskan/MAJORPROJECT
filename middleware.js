@@ -64,4 +64,4 @@ module.exports.isReviewAuthor = async(req, res, next) => {
         return res.redirect(`/listings/${id}`);
     }
     next();
-};
+}; 
