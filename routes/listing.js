@@ -22,7 +22,7 @@ router.get("/new", isLoggedIn, listingController.renderNewForm );
 
 
 //Show Route
-router.get("/:id", wrapAsync(listingController.showListing)
+router.get("/:id", wrapAsync(listingController.showListing) 
 );
 
 
@@ -33,7 +33,7 @@ router.get("/:id/edit",
     wrapAsync(listingController.renderEditForm));
 
 
-//Update Route 
+//Update Route  
 router.put(
     "/:id", 
     isLoggedIn,
