@@ -7,6 +7,14 @@ const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
 const listingController = require("../controllers/listings.js");
 
+router.route("/")
+    .get(wrapAsync(listingController.index))
+    .post( 
+    isLoggedIn,
+    validateListing,
+    wrapAsync(listingController.createListing)
+);
+
 //Index route 
 router.get("/", wrapAsync(listingController.index));
 
