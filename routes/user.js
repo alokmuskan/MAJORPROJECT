@@ -29,7 +29,7 @@ router.post(
 );
 
 
-router.get("/logout", userController.login);
+router.get("/logout", userController.logout);
 
 
 module.exports = router;
