@@ -11,7 +11,7 @@ const {
 }  = require("../middleware.js");
 
 
-const reviewController = require("../controllers/rwview.js");
+const reviewController = require("../controllers/reviews.js");
 const review = require("../models/review.js");
 
 //Post Review Route
