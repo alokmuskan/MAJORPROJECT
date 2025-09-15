@@ -16,7 +16,7 @@ router
 //     wrapAsync(listingController.createListing)
 // );
 .post((req, res) => {
-    res.send(req.body);
+    res.send(req.body); 
 });
 
 //New Route
