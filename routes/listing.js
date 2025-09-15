@@ -9,7 +9,7 @@ const listingController = require("../controllers/listings.js");
 
 const multer  = require('multer');
 const {storage} = require("../cloudConfig.js");
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage });
 
 router
     .route("/")
