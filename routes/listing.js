@@ -18,7 +18,7 @@ router
 //     validateListing,
 //     wrapAsync(listingController.createListing)
 // );
-.post((req, res) => {
+.post( upload.single('avatar') , (req, res) => {
     res.send(req.body); 
 });
 
