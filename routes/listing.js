@@ -18,8 +18,8 @@ router
 //     validateListing,
 //     wrapAsync(listingController.createListing)
 // );
-.post( upload.single('avatar') , (req, res) => {
-    res.send(req.body); 
+.post( upload.single('listing[image]') , (req, res) => {
+    res.send(req.file); 
 });
 
 //New Route
