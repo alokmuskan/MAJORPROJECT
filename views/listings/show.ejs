@@ -20,7 +20,8 @@
     <div class="btns">
         <a href="/listings/<%= listing._id %>/edit" 
             class="btn btn-dark col-1 offset-3 edit-btn"
-            >Edit</a>
+            >Edit</a
+        >
 
         <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
             <button class="btn btn-dark offset-5">Delete</button>
@@ -28,27 +29,27 @@
     </div>
     <% } %>
     <div class="col-8 offset-3 mb-3">
-        <hr>
         <% if(currUser) { %>
+            <hr/>
         <h4>Leave a Review</h4>
         <form 
             action="/listings/<%= listing.id %>/reviews" 
             method="POST"
             novalidate
             class="needs-validation"
-            >
+        >
 
             <div class="mb-3 mt-3">
                 <lable for="rating" class="form-label">Rating</lable>
                 <fieldset class="starability-slot">
                     <input 
-                    type="radio" 
-                    id="no-rate" 
-                    class="input-no-rate" 
-                    name="review[rating]" 
-                    value="1" 
-                    checked 
-                    aria-label="No rating." 
+                        type="radio" 
+                        id="no-rate" 
+                        class="input-no-rate" 
+                        name="review[rating]" 
+                        value="1" 
+                        checked 
+                        aria-label="No rating." 
                     />
                     <input type="radio" id="first-rate1" name="review[rating]" value="1" />
                     <label for="first-rate1" title="Terrible">1 star</label>
@@ -81,24 +82,38 @@
             <% } %>
         </form>
 
-        <p><b>All Reviews</b></p>
+        <% if(listing.reviews.length > 0)  { %>
         <div class="row">
-        <% for(review of listing.reviews) { %>
-            <div class="card col-5 ms-3 mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"> @<%= review.author.username %> </h5>
-                    <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
-                     <p class="card-text"> <%= review.comment %></p>
-                    
-                    <form 
-                    class="mb-3" 
-                    method="POST" 
-                    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
-                    >
-                        <button class="btn btn-sm btn-dark">Delete</button>
-                    </form>
+            <p><b>All Reviews</b></p>
+            <% for(review of listing.reviews) { %>
+                <div class="card col-5 ms-3 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title"> @<%= review.author.username %> </h5>
+                        <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+                        <p class="card-text"> <%= review.comment %></p>
+                        
+                        <form 
+                        class="mb-3" 
+                        method="POST" 
+                        action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                        >
+                            <button class="btn btn-sm btn-dark">Delete</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            <% } %>
+        </div>
         <% } %>
     </div>
+    <div class="col-8 offset-3 mb-3">
+        <h3>Where you'll be</h3>
+        <div id="map"></div>
+    </div>
 </div>
+
+<script>
+    var map;
+    function initMap1() {
+        map = new mappls.Map('map', {center:[16.46321,80.50640]});
+    }
+</script>
