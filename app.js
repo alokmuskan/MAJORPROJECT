@@ -45,7 +45,17 @@ app.engine('ejs', ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 
+const store = MongoStore.create({ 
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: "mysupersecretcode",
+    },
+    touchAfter: 24*3600,
+});
+
+
 const sessionOptions = {
+    store,
     secret: "mysupersecretcode",
     resave: false,
     saveUninitialized: true, 
@@ -61,14 +71,6 @@ const sessionOptions = {
 //     res.send("Hi, I am root.");
 // });
 
-
-const store = MongoStore.create({ 
-    mongoUrl: dbUrl,
-    crypto: {
-        secret: "mysupersecretcode",
-    },
-    touchAfter: 24*3600,
-});
 
 app.use(session(sessionOptions));
 app.use(flash());
