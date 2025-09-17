@@ -61,6 +61,15 @@ const sessionOptions = {
 //     res.send("Hi, I am root.");
 // });
 
+
+const store = MongoStore.create({ 
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: "mysupersecretcode",
+    },
+    touchAfter: 24*3600,
+});
+
 app.use(session(sessionOptions));
 app.use(flash());
 
