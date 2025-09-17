@@ -1,6 +1,5 @@
 <% layout("/layouts/boilerplate") %>
    
-    ?
     <!--commented this out bcoz added this option in navbar to add new listing-->
     <!-- <form method="GET" action="/listings/new">
         <button>Create New Listing</button>
@@ -14,11 +13,18 @@
         <% } %>
     </ul> -->
 
-    <div>
+    <style>
         
+    </style>
+
+    <div id="filters">
+        <div class="filter">
+            <i class="fa-solid fa-fire"></i>
+            Trending
+        </div>
     </div>
 
-    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1"> <!--row-cols-lg-3 ek row ke ander jitne bhi cols hai large screen size me (defined on bootstrap) minimum 3 card ek line ke ander dikayi denge -->
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3"> <!--row-cols-lg-3 ek row ke ander jitne bhi cols hai large screen size me (defined on bootstrap) minimum 3 card ek line ke ander dikayi denge -->
         <% for(let listing of allListings) { %> <!--for jaise jaise run karega hamare liye waise cards create honge-->
             <a href="/listings/<%= listing._id %>" class="listing-link">
                 <div class="card col listing-card"> <!--style="width: 20rem;" removed this width so that img can fit properly-->
